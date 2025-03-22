@@ -1,0 +1,20 @@
+main.main-content {
+	height: 100%; flex: 1;
+}
+
+.content {
+	inline-size: min(100%, var(--content-max-width));
+	block-size: calc(100dvh - var(--header-size) - 2rem);
+	margin-inline: auto; margin-block-start: 3rem;
+	padding: 0 1.5rem; overflow-x: clip;
+}
+
+#research.content {
+	margin-block-start: 1.5rem;
+}
+
+@media (width >= 480px) {
+	#home.content {
+		padding-inline: 0rem;
+	}
+}

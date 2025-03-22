@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <meta name="msapplication-TileColor" content="#fff9e5bf" />
+		<meta name="theme-color" content="#fff9e5bf" />
+		<link rel="stylesheet" href="css/styles.css" />
+		<script defer type="module" src="js/script.js"></script>
+    <title>Frank Tsiwah</title>
+  </head>
+  <body>
+    <!-- Header  -->
+    <header class="navigation">
+      <section id="header">
+				<div class="logo">
+					<a href="/">
+						<img src="./assets/images/logo.png" alt="Logo" />
+					</a>
+				</div>
+				<nav id="navigation" class="nav" data-mobile-expanded="false">
+					<ul class="nav__list">
+						<li class="nav__item">
+							<a href="/" aria-selected="false" class="nav__link">Home</a>
+						</li>
+						<li class="nav__item">
+							<a href="research.html" aria-selected="true" class="nav__link">Research</a>
+							<svg class="icon mobile-icon">
+								<use
+									xlink:href="assets/icons/sprites.svg#icon-chevron-right"
+								></use>
+							</svg>
+							<div class="sub__menu">
+								<ul class="sub__menu--lists">
+									<li class="sub__menu--lists--item">
+										<a
+											href="research.html"
+											class="sub__menu--title"
+										>
+											Publications
+										</a>
+										<ul class="sub__menu--lists">
+											<li class="sub__menu--lists--item">
+												<a
+													href="papers.html"
+													class="sub__menu--lists--item-link"
+												>
+													Papers
+												</a>
+											</li>
+											<li class="sub__menu--lists--item">
+												<a
+													href="abstract.html"
+													class="sub__menu--lists--item-link"
+												>
+													Published abstracts
+												</a>
+											</li>
+										</ul>
+									</li>
+									<li class="sub__menu--lists--item">
+										<a
+											href="projects.html"
+											class="sub__menu--title"
+										>
+											Ongoing Projects
+										</a>
+										<ul class="sub__menu--lists">
+											<li class="sub__menu--lists--item">
+												<a
+													href="phd_supervision.html"
+													class="sub__menu--lists--item-link"
+												>
+													PhD supervision
+												</a>
+											</li>
+											<li class="sub__menu--lists--item">
+												<a
+													href="students.html"
+													class="sub__menu--lists--item-link"
+												>
+													Masters students
+												</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav__item">
+							<a href="teachings.html" aria-selected="false" class="nav__link">Teachings</a>
+						</li>
+						<li class="nav__item">
+							<a href="talks.html" aria-selected="false" class="nav__link">Talks</a>
+						</li>
+						<li class="nav__item">
+							<a href="contact.html" aria-selected="false" class="nav__link">Contact</a>
+						</li>
+					</ul>
+					<button
+						class="toggle mobile-nav-toggle js-toggle-button"
+						aria-controls="primary-navigation"
+						aria-expanded="false"
+						aria-label="Menu"
+					>
+						<span class="toggle-btn"></span>
+					</button>
+				</nav>
+      </section>
+    </header>
+
+    <!-- Main Content -->
+			<main class="main-content">
+				<section id="home" class="content">
+					<div class="home__right">
+						<img src="./assets/images/frank.png" alt="Hero"/>
+						<div></div>
+					</div>
+					<div class="home__left">
+						<header class="home__header">
+							<h1>Frank Tsiwah,&nbsp;<small>PhD</small></h1>
+							<span>Assistant Prof. of Neuro-Computational Linguistics <small>(University of Groningen)</small></span>
+							<span>University of Groningen</span>
+						</header>
+						<p>
+							My research focuses on the neurophysiological and cognitive mechanisms underlying speech and language processing. I explore how speech and language impairments are encoded in audio signals and textual data, leveraging Natural <strong>Language Processing (NLP)</strong> and <strong>Machine Learning</strong> to detect and analyze these impairments. Using experimental, data-driven, and neurophysiological methods (e.g., EEG), I aim to understand disordered speech and language while developing innovative language technologies to support individuals with communication challenges. My work bridges <strong>Linguistics, Neuroscience, </strong>and <strong>AI</strong> to advance both theoretical understanding and practical applications.
+						</p>
+						<ul class="socials">
+								<li>
+									<a href="linkedin.com/in/frank-tsiwah-phd-49092759" target="_blank" rel="noopener" aria-label="">
+										<svg class="icon">
+											<use
+												xlink:href="assets/icons/sprites.svg#icon-linkedin"
+											></use>
+										</svg>
+										<span>@frank_tsiwah</span>
+									</a>
+								</li>
+								<li>
+									<a href="email:f.tsiwah@rug.nl" target="_blank" rel="noopener" aria-label="">
+										<svg class="icon">
+											<use
+												xlink:href="assets/icons/sprites.svg#icon-envelop"
+											></use>
+										</svg>
+										<span>f.tsiwah@rug.nl</span>
+									</a>
+								</li>
+								<li>
+									<a href="tel:+316 123 456 78" target="_blank" rel="noopener" aria-label="">
+										<svg class="icon">
+											<use
+												xlink:href="assets/icons/sprites.svg#icon-phone-box"
+											></use>
+										</svg>
+										<span>+316 123 456 78</span>
+									</a>
+								</li>
+						</ul>
+					</div>
+				</section>
+			</main>
+
+  </body>
+</html>

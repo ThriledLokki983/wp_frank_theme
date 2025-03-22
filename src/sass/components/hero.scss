@@ -1,0 +1,22 @@
+.hero {
+  block-size: 22rem; position: relative;
+  border-radius: 4px;
+
+  @media (width <= 480px) {
+    block-size: 15rem;
+  }
+
+  > img {
+    block-size: 100%; inline-size: 100%;
+    object-fit: cover; border-radius: 4px;
+  }
+}
+
+.hero > figcaption {
+  font-size: 7rem; color: #CFD5E0; position: absolute;
+  inset: auto auto 6rem 3rem; font-weight: 600;
+
+  @media (width <= 480px) {
+   font-size: 5rem;
+  }
+}

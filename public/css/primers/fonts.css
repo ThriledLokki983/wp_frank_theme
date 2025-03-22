@@ -1,0 +1,12 @@
+/** FONTS TO BE USED */
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Jost:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+/** FONT FAMILY */
+:root {
+  --font-heading: "Jost", sans-serif;
+  --font-body-1: "Roboto Flex", monospace;
+  --font-body-2: "Nunito Sans", sans-serif;
+  --font-nav: "Inter", sans-serif;
+}
