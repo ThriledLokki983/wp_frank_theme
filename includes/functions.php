@@ -36,6 +36,25 @@ add_action('init', 'register_publications_cpt');
 
 
 /**
+ * Register custom post type for publications.
+ *
+ * @return void
+ */
+function register_projects_cpt() {
+    register_post_type('projects', [
+        'label'        => 'Projects',
+        'public'       => true,
+        'show_in_menu' => true,
+        'supports'     => ['title'],
+        'has_archive'  => true, // Important if you want archive pages
+        'rewrite'      => ['slug' => 'projects'],
+        'show_in_rest' => true, // Optional, for Gutenberg/REST API
+    ]);
+}
+add_action('init', 'register_projects_cpt');
+
+
+/**
  * Register custom taxonomy for publications.
  *
  * @return void

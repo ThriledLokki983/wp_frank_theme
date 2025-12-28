@@ -1,10 +1,12 @@
-import { PUBLICATIONS } from "./data/publications.js";
-import { ListItem } from "./utils.js";
+import SelectDropdown from "./selectDropdown.js";
 
-const publicationsContainer = document.querySelector('.js-publication__list');
-if (!publicationsContainer) {
-	console.warn('................No container found............');
-} else {
-	const publications = new ListItem(PUBLICATIONS, publicationsContainer);
-	publications?.renderPublication();
-}
+const researchSelect = new SelectDropdown('js-publication__list');
+researchSelect.init();
+
+
+const publicationSelect = new SelectDropdown('ul[data-pub-list]');
+publicationSelect.init();
+
+
+const projectsSelect = new SelectDropdown('ul[data-project-list]');
+projectsSelect.init();

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="main" data-research-page>
+<main class="main" data-publications-page>
     <?php get_template_part('parts/part', 'page-header'); ?>
     <?php frank_content_builder() ?>
 
@@ -9,30 +9,9 @@
         <!-- <label for="publications-filter">Filter by year:</label> -->
         <div class="publications__filter-select">
             <select id="publications-filter" class="publications__filter-select-dropdown" data-select-element>
-                <option value="all">Select publication year</option>
-                <?php
-                    $years = new WP_Query([
-                        'post_type'      => 'publication',
-                        'posts_per_page' => -1,
-                        'orderby'        => 'meta_value_num',
-                        'meta_query'     => [
-                            [
-                                'key'     => 'journal_year',
-                                'compare' => 'EXISTS',
-                            ],
-                        ],
-                        'meta_key'       => 'journal_year',
-                        'order'          => 'DESC'
-                    ]);
-
-                    if ($years->have_posts()) :
-                        while ($years->have_posts()) : $years->the_post();
-                            $year = get_field('journal_year');
-                            echo '<option value="' . esc_attr($year) . '">' . esc_html($year) . '</option>';
-                        endwhile;
-                        wp_reset_postdata();
-                    endif;
-                ?>
+                <option value="all">Select publication type</option>
+                <option value="abstract">Published abstract</option>
+                <option value="paper">Papers</option>
             </select>
             <svg class="icon nav__icon">
                <use xlink:href="<?php echo TPL_DIR_URI; ?>/public/assets/icons/sprites.svg#icon-chevron-right"></use>
@@ -56,7 +35,7 @@
         ]);
 
         if ($publications->have_posts()) :
-            echo '<ul class="publications js-publication__list">';
+            echo '<ul class="publications js-publication__list" data-pub-list>';
             while ($publications->have_posts()) : $publications->the_post();
                 // Get all ACF fields
                 $title  = get_field('journal_title');
@@ -66,8 +45,9 @@
                 $pdf_file      = get_field('journal_pdf_download_link');
                 $external_link = get_field('journal_page_link');
                 $status        = get_field('status');
+                $type        = get_field('publication_type');
             ?>
-                <li class="publication__item" data-publication-type="<?php echo esc_html($year) ?>">
+                <li class="publication__item" data-publication-type="<?php echo esc_attr(strtolower($type)) ?>">
                      <div>
                         <h3> <?php echo esc_html($title)?></h3>
 					    <span>

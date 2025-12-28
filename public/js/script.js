@@ -1,6 +1,7 @@
 'use strict';
 
 import './navigation.js';
+import './publications.js';
 
 
 const HOMEPAGE_KEY = '/';

@@ -1,12 +1,12 @@
 :root {
   color-scheme: light;
-  --container-padding-inline: 2rem;
+  --container-padding-inline: var(--size-5);
   --content-max-width: 1440px;
   --breakout-max-width: 95dvw;
-  --content-padding: 24px;
+  --content-padding: var(--size-6);
   --header-size: 70px;
   --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width) ) / 2);
-  --transition-animation: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  --transition-animation: var(--ease-spring-3);
   /* Set default color scheme */
   --accent-1: var(--accent-clr-1);
   --accent-2: var(--accent-clr-2);
@@ -47,8 +47,9 @@ body {
   color: var(--text-1);
   background-color: rgba(255, 249, 229, 0.75);
   accent-color: var(--accent-1);
-  line-height: 1.5;
-  overflow: clip;
+  line-height: var(--font-lineheight-3);
+  overflow-x: hidden;
+  overflow-y: auto;
   min-block-size: 100dvh;
   inline-size: 100dvw;
   display: flex;

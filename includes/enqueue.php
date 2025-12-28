@@ -2,23 +2,8 @@
 // enqueue assets
 function frank_enqueue_assets()
 {
-    // get version of theme and set it as asset version
-    // $theme = wp_get_theme();
-    // $version = $theme->version;
-
-    // // fonts
-    // // wp_enqueue_style('myriad', get_theme_file_uri('/public/assets/fonts/Myriad-Pro-Regular.ttf'), false, $version);
-
-    // // CSS
-    // wp_enqueue_style('frank', get_theme_file_uri('/public/css/styles.css'), false, $version);
-    // wp_enqueue_style('fontawesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?ver=6.0.2', false, $version);
-
-    // // JS
-    // wp_enqueue_script('frank', get_theme_file_uri('/public/js/script.js'), false, $version);
-
     $theme_version = wp_get_theme()->get('Version');
 
-    // Path to your compiled CSS file
     $css_file = get_template_directory() . '/public/css/styles.css';
     $css_version = file_exists($css_file) ? filemtime($css_file) : $theme_version;
 

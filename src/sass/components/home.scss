@@ -1,6 +1,6 @@
 section#home {
-	display: flex; justify-content: space-between; align-items: flex-start;
-	block-size: 88dvh; gap: 2.5rem;
+	display: flex; justify-content: space-between; align-items: center;
+	block-size: auto; gap: 4rem; padding-block: 4rem;
 
 	@media (width <= 480px) {
 		flex-direction: column; transform: translateY(0);
@@ -8,9 +8,20 @@ section#home {
 	}
 }
 
-#home > .home__left, #home > .home__right, #home > .home__right > picture {
-	block-size: 100dvh; position: relative;
+#home > .home__left {
+	position: relative;
 	display: flex; flex-direction: column; place-content: center;
+	flex: 1 1 60%;
+
+	@media (width <= 480px) {
+		max-inline-size: 100%; block-size: auto;
+	}
+}
+
+#home > .home__right > picture {
+	position: relative;
+	display: flex; flex-direction: column; place-content: center;
+	block-size: 100%;
 
 	@media (width <= 480px) {
 		max-inline-size: 100%; block-size: auto;
@@ -18,7 +29,10 @@ section#home {
 }
 
 #home > .home__right {
-	flex: 1 1 55%;
+	flex: 0 0 40%;
+	block-size: 70dvh;
+	display: flex;
+	align-items: center;
 
 	@media (width <= 480px) {
 		display: none;
@@ -26,29 +40,27 @@ section#home {
 }
 
 #home > .home__right picture {
-	transform: translateY(-10rem);
+	inline-size: 100%;
+	block-size: 100%;
+	border-radius: 8px;
+	overflow: hidden;
 
 	> img {
 		inline-size: 100%; block-size: 100%; object-fit: cover;
-		object-position: top; filter: grayscale(95%) hue-rotate(180deg);
+		object-position: center; filter: grayscale(95%) hue-rotate(180deg);
 		transform: scaleX(-1);
 	}
 
 	&::before {
-		content: ""; position: absolute; inset: 0 auto auto 0; z-index: 2;
-		inline-size: 100%; block-size: 30%; pointer-events: none; transform: translateY(-20rem);
-		background: linear-gradient(to bottom, rgba(255,249,229,0.75) 20%, rgba(255, 249, 229, 0.0000001) 100%);
-
-		@media (width <= 480px) {
-			display: none;
-		}
+		content: none;
 	}
 
 	&::after {
 		content: "";
-		position: absolute; inset: auto 0 auto auto; z-index: 1;
-		inline-size: 5px; block-size: 100%;
+		position: absolute; inset: 0 0 0 auto; z-index: 1;
+		inline-size: 4px; block-size: 100%;
 		background: linear-gradient(to top, var(--accent-1), transparent);
+		border-radius: 0 8px 8px 0;
 
 		@media (width <= 480px) {
 			display: none;

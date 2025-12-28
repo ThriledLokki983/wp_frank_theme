@@ -9,3 +9,4 @@ require 'includes/enqueue.php';
 require 'includes/theme-support.php';
 require 'includes/nav-menus.php';
 require 'includes/theme-options.php';
+require 'includes/post-types.php'; // Include our custom post types

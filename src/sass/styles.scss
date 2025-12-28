@@ -1,5 +1,7 @@
-@use 'utilities/reset';
-@use 'utilities/mixins';
-@use 'theme/theme';
-@use 'components/index';
-@use 'primers/fonts';
+@import '../node_modules/open-props/open-props.min.css';
+
+@import 'utilities/reset';
+@import 'utilities/mixins';
+@import 'theme/theme';
+@import 'components/index';
+@import 'primers/fonts';
