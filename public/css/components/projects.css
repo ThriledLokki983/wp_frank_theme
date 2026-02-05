@@ -1,0 +1,7 @@
+.publications .publication__item.projects {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-inline-start: 4px solid var(--accent-1);
+  padding-block: 2rem;
+  margin-block-end: 1.5rem;
+}

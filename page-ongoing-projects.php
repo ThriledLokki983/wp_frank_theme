@@ -12,7 +12,7 @@
                 <select id="projects-filter" class="publications__filter-select-dropdown" data-select-element>
                     <option value="all">All types</option>
                     <option value="phd supervision">PhD Supervision</option>
-                    <option value="master's students">Master's Students</option>
+                    <option value="master students">Master Students</option>
                 </select>
                 <svg class="icon nav__icon">
                    <use xlink:href="<?php echo TPL_DIR_URI; ?>/public/assets/icons/sprites.svg#icon-chevron-right"></use>
@@ -25,14 +25,7 @@
         $publications = new WP_Query([
             'post_type'      => 'projects',
             'posts_per_page' => -1,
-            'orderby'        => 'meta_value_num',
-            'meta_query'     => [
-                [
-                    'key'     => 'title',
-                    'compare' => 'EXISTS',
-                ],
-            ],
-            'meta_key'       => 'title',
+            'orderby'        => 'date',
             'order'          => 'DESC'
         ]);
 
@@ -40,14 +33,19 @@
             echo '<ul class="publications js-publication__list" data-project-list>';
             while ($publications->have_posts()) : $publications->the_post();
                 // Get all ACF fields
-                $title = get_field('title');
+                $title = get_field('projects_title');
                 $type = get_field('project_type');
                 $description = get_field('description');
                 $status = get_field('project_status');
                 $collaborators = get_field('collaborators');
                 $year = get_field('year');
+                
+                // Fallback to post title if ACF title is empty
+                if (empty($title)) {
+                    $title = get_the_title();
+                }
             ?>
-                <li class="publication__item" data-publication-type="<?php echo esc_attr(strtolower($type)) ?>">
+                <li class="publication__item projects" data-publication-type="<?php echo esc_attr(strtolower($type)) ?>">
                      <div>
                         <h3><?php echo esc_html($title); ?></h3>
 					    <span>

@@ -206,12 +206,17 @@ get_header();
             if ($projects->have_posts()) :
                 echo '<ul class="publications js-projects-list">';
                 while ($projects->have_posts()) : $projects->the_post();
-                    $title = get_field('title');
+                    $title = get_field('projects_title');
                     $type = get_field('project_type');
                     $description = get_field('description');
                     $status = get_field('project_status');
                     $collaborators = get_field('collaborators');
                     $year = get_field('year');
+                    
+                    // Fallback to post title if ACF title is empty
+                    if (empty($title)) {
+                        $title = get_the_title();
+                    }
         ?>
                     <li class="publication__item" data-project-type="<?php echo esc_attr(strtolower($type)) ?>">
                         <div>

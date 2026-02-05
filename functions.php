@@ -64,8 +64,8 @@ function frank_publications_rewrite_rules() {
     
     // Ongoing projects page with filter type
     add_rewrite_rule(
-        '^ongoing-projects/([^/]+)/?$',
-        'index.php?pagename=ongoing-projects&project_filter=$matches[1]',
+        '^research/ongoing-projects/([^/]+)/?$',
+        'index.php?pagename=research/ongoing-projects&project_filter=$matches[1]',
         'top'
     );
 }

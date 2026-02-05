@@ -47,11 +47,14 @@ class SelectDropdown {
 		// Map plural to singular (papers -> paper)
 		const filterMappings = {
 			'papers': 'paper',
-			'abstracts': 'abstract'
+			'abstracts': 'abstract',
+			'phd-supervision': 'phd supervision',
+			'master-students': 'master students',
+			'masters-students': 'master students'
 		};
 		filterValue = filterMappings[filterValue] || filterValue;
 
-		if (filterValue && filterValue !== 'publications' && filterValue !== 'research') {
+		if (filterValue && filterValue !== 'publications' && filterValue !== 'research' && filterValue !== 'ongoing-projects') {
 			// Find matching option in dropdown
 			const options = Array.from(this._selectElement.options);
 			const matchingOption = options.find(opt => 
