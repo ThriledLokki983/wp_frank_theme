@@ -56,8 +56,8 @@
                         <?php if (have_rows('contributors')) : ?>
                             <ul class="publishers">
                                 <?php while (have_rows('contributors')) : the_row();
-                                    $contributor_name = get_sub_field('authour_name');
-                                    $is_lead = get_sub_field('lead_author');
+                                    $contributor_name = get_sub_field('contributor_name');
+                                    $is_lead = get_sub_field('lead_contributor');
                                     // ACF radio button returns string - check for 'yes' value
                                     $is_lead_contributor = ($is_lead === 'yes' || $is_lead === 'Yes' || $is_lead === true || $is_lead === '1');
                                     if ($contributor_name): ?>
