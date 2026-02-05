@@ -36,9 +36,6 @@
                 $title = get_field('projects_title');
                 $type = get_field('project_type');
                 $description = get_field('description');
-                $status = get_field('project_status');
-                $collaborators = get_field('collaborators');
-                $year = get_field('year');
                 
                 // Fallback to post title if ACF title is empty
                 if (empty($title)) {
@@ -50,29 +47,27 @@
                         <h3><?php echo esc_html($title); ?></h3>
 					    <span>
                             <?php echo esc_html($type) ?>
-                            <?php if(!empty($year)): ?>
-                            <strong>
-                                (<?php echo esc_html($year) ?>)
-                            </strong>
-                            <?php endif; ?>
                         </span>
                         <?php if(!empty($description)): ?>
                             <p class="project-description"><?php echo wp_trim_words($description, 25); ?></p>
                         <?php endif; ?>
                     </div>
                     <footer>
-                        <?php if(!empty($collaborators)): ?>
+                        <?php if (have_rows('contributors')) : ?>
                             <ul class="publishers">
-                                <li>
-                                    <span><?php echo esc_html($collaborators); ?></span>
-                                </li>
-                            </ul>
-                        <?php endif; ?>
-                        <?php if(!empty($status)): ?>
-                            <ul class="links">
-                                <li>
-                                    <span class="project-status-badge"><?php echo esc_html($status); ?></span>
-                                </li>
+                                <?php while (have_rows('contributors')) : the_row();
+                                    $contributor_name = get_sub_field('authour_name');
+                                    $is_lead = get_sub_field('lead_author');
+                                    // ACF radio button returns string - check for 'yes' value
+                                    $is_lead_contributor = ($is_lead === 'yes' || $is_lead === 'Yes' || $is_lead === true || $is_lead === '1');
+                                    if ($contributor_name): ?>
+                                        <li data-autor="<?php echo esc_attr($contributor_name); ?>"<?php if ($is_lead_contributor) echo ' data-lead-author="true"'; ?>>
+                                            <span>
+                                                <?php echo esc_html($contributor_name); ?>
+                                            </span>
+                                        </li>
+                                    <?php endif; ?>
+                                <?php endwhile; ?>
                             </ul>
                         <?php endif; ?>
                     </footer>
