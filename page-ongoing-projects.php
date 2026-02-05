@@ -4,17 +4,20 @@
     <?php get_template_part('parts/part', 'page-header'); ?>
     <?php frank_content_builder() ?>
 
-    <!-- // make a dropdown list to filter the publications by year -->
+    <!-- // make a dropdown list to filter the projects by type -->
     <div class="publications__filter">
-        <div class="publications__filter-select">
-            <select id="publications-filter" class="publications__filter-select-dropdown" data-select-element>
-                <option value="all">Select project type</option>
-                <option value="phd supervision">PhD Supervision</option>
-                <option value="master's students">Master's Students</option>
-            </select>
-            <svg class="icon nav__icon">
-               <use xlink:href="<?php echo TPL_DIR_URI; ?>/public/assets/icons/sprites.svg#icon-chevron-right"></use>
-            </svg>
+        <div class="publications__filter-group">
+            <label for="projects-filter" class="publications__filter-label">Filter by Type</label>
+            <div class="publications__filter-select">
+                <select id="projects-filter" class="publications__filter-select-dropdown" data-select-element>
+                    <option value="all">All types</option>
+                    <option value="phd supervision">PhD Supervision</option>
+                    <option value="master's students">Master's Students</option>
+                </select>
+                <svg class="icon nav__icon">
+                   <use xlink:href="<?php echo TPL_DIR_URI; ?>/public/assets/icons/sprites.svg#icon-chevron-right"></use>
+                </svg>
+            </div>
         </div>
     </div>
 

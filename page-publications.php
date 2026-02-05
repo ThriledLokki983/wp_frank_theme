@@ -1,21 +1,26 @@
-<?php get_header(); ?>
+<?php 
+get_header(); 
+$pub_filter = get_query_var('pub_filter', '');
+?>
 
-<main class="main" data-publications-page>
+<main class="main" data-publications-page<?php if ($pub_filter): ?> data-initial-filter="<?php echo esc_attr($pub_filter); ?>"<?php endif; ?>>
     <?php get_template_part('parts/part', 'page-header'); ?>
     <?php frank_content_builder() ?>
 
-    <!-- // make a dropdown list to filter the publications by year -->
+    <!-- // make a dropdown list to filter the publications by type -->
     <div class="publications__filter">
-        <!-- <label for="publications-filter">Filter by year:</label> -->
-        <div class="publications__filter-select">
-            <select id="publications-filter" class="publications__filter-select-dropdown" data-select-element>
-                <option value="all">Select publication type</option>
-                <option value="abstract">Published abstract</option>
-                <option value="paper">Papers</option>
-            </select>
-            <svg class="icon nav__icon">
-               <use xlink:href="<?php echo TPL_DIR_URI; ?>/public/assets/icons/sprites.svg#icon-chevron-right"></use>
-            </svg>
+        <div class="publications__filter-group">
+            <label for="publications-filter" class="publications__filter-label">Filter by Type</label>
+            <div class="publications__filter-select">
+                <select id="publications-filter" class="publications__filter-select-dropdown" data-select-element>
+                    <option value="all">All types</option>
+                    <option value="abstract"<?php if ($pub_filter === 'abstract'): ?> selected<?php endif; ?>>Published abstract</option>
+                    <option value="paper"<?php if ($pub_filter === 'paper' || $pub_filter === 'papers'): ?> selected<?php endif; ?>>Papers</option>
+                </select>
+                <svg class="icon nav__icon">
+                   <use xlink:href="<?php echo TPL_DIR_URI; ?>/public/assets/icons/sprites.svg#icon-chevron-right"></use>
+                </svg>
+            </div>
         </div>
     </div>
 

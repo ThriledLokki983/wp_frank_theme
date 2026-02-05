@@ -1,7 +1,7 @@
 .footer {
   overflow: auto;
   z-index: 2;
-  margin-block: 3rem 5rem;
+  margin-block: 1rem 5rem;
   display: flex;
   place-content: center;
   place-items: center;

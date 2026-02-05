@@ -49,3 +49,34 @@ function frank_admin_scripts($hook) {
     }
 }
 add_action('admin_enqueue_scripts', 'frank_admin_scripts');
+
+/**
+ * Add rewrite rules for filtered publication URLs
+ * e.g., /research/publications/papers/ -> publications page with papers filter
+ */
+function frank_publications_rewrite_rules() {
+    // Publications page with filter type
+    add_rewrite_rule(
+        '^research/publications/([^/]+)/?$',
+        'index.php?pagename=research/publications&pub_filter=$matches[1]',
+        'top'
+    );
+    
+    // Ongoing projects page with filter type
+    add_rewrite_rule(
+        '^ongoing-projects/([^/]+)/?$',
+        'index.php?pagename=ongoing-projects&project_filter=$matches[1]',
+        'top'
+    );
+}
+add_action('init', 'frank_publications_rewrite_rules');
+
+/**
+ * Register custom query vars for filters
+ */
+function frank_register_query_vars($vars) {
+    $vars[] = 'pub_filter';
+    $vars[] = 'project_filter';
+    return $vars;
+}
+add_filter('query_vars', 'frank_register_query_vars');

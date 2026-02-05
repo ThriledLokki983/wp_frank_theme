@@ -1,7 +1,7 @@
 .main {
 	inline-size: min(100%, var(--content-max-width)); block-size: inherit;
 	margin-inline: auto; display: flex; flex-direction: column; align-items: flex-start;
-	margin-block-start: var(--header-size);
+	margin-block: var(--header-size) 3rem;
 	flex: 1 0 auto; // Ensures main grows to push footer to bottom
 
 	@media (width <= 480px) {

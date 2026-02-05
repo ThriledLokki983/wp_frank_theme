@@ -1,5 +1,5 @@
 .footer {
-  overflow: auto; z-index: 2; margin-block: 3rem 5rem;
+  overflow: auto; z-index: 2; margin-block: 1rem 5rem;
   display: flex; place-content: center; place-items: center; flex-wrap: wrap;
   flex-shrink: 0; // Prevents footer from shrinking, keeps it at bottom
   margin-block-start: auto; // Pushes footer to bottom when content is short

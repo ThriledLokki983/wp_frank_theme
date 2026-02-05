@@ -38,37 +38,34 @@
         <p>
             <?= get_sub_field('text'); ?>
         </p>
-        <ul class="socials">
+        <ul class="socials socials--circles">
+            <?php if (get_sub_field('linkedin_link')): ?>
             <li>
-                <a href="<?= get_sub_field('linkedin_link'); ?>" target="_blank" rel="noopener" aria-label="">
+                <a href="<?= get_sub_field('linkedin_link'); ?>" target="_blank" rel="noopener" aria-label="LinkedIn Profile">
                     <svg class="icon">
-                        <use
-                            xlink:href="<?= TPL_DIR_URI ?>/public/assets/icons/sprites.svg#icon-linkedin"
-                        ></use>
+                        <use xlink:href="<?= TPL_DIR_URI ?>/public/assets/icons/sprites.svg#icon-linkedin"></use>
                     </svg>
-                    <span><?= get_sub_field('linkedin_text'); ?></span>
                 </a>
             </li>
+            <?php endif; ?>
+            <?php if (get_sub_field('email')): ?>
             <li>
-                <a href="email:<?= get_sub_field('email'); ?>"  target="_blank" rel="noopener" aria-label="">
+                <a href="mailto:<?= get_sub_field('email'); ?>" target="_blank" rel="noopener" aria-label="Send Email">
                     <svg class="icon">
-                        <use
-                            xlink:href="<?= TPL_DIR_URI ?>/public/assets/icons/sprites.svg#icon-envelop"
-                        ></use>
+                        <use xlink:href="<?= TPL_DIR_URI ?>/public/assets/icons/sprites.svg#icon-envelop"></use>
                     </svg>
-                    <span><?= get_sub_field('email_text'); ?></span>
                 </a>
             </li>
+            <?php endif; ?>
+            <?php if (get_sub_field('telephone')): ?>
             <li>
-                <a href="tel:<?= get_sub_field('telephone'); ?>"  target="_blank" rel="noopener" aria-label="">
+                <a href="tel:<?= get_sub_field('telephone'); ?>" target="_blank" rel="noopener" aria-label="Call">
                     <svg class="icon">
-                        <use
-                            xlink:href="<?= TPL_DIR_URI ?>/public/assets/icons/sprites.svg#icon-phone-box"
-                        ></use>
+                        <use xlink:href="<?= TPL_DIR_URI ?>/public/assets/icons/sprites.svg#icon-phone-box"></use>
                     </svg>
-                    <span><?= get_sub_field('telephone'); ?></span>
                 </a>
             </li>
+            <?php endif; ?>
         </ul>
     </article>
 </section>

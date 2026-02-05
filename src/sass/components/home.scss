@@ -186,6 +186,59 @@ section#home {
 	@media (width <= 480px) {
 		flex-flow: row wrap; column-gap: 1rem;
 	}
+
+	// Circular icon-only variant
+	&.socials--circles {
+		flex-direction: row;
+		gap: 1rem;
+		margin-block-start: 2.5rem;
+
+		li {
+			margin: 0;
+			padding: 0;
+
+			> a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				inline-size: 52px;
+				block-size: 52px;
+				border-radius: 50%;
+				background: var(--accent-1);
+				color: white;
+				transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+				&:hover {
+					transform: translateY(-3px);
+					background: var(--accent-2, var(--accent-1));
+					box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+					text-decoration: none;
+					color: white; // Keep icon white on hover
+				}
+
+				svg {
+					inline-size: 24px;
+					block-size: 24px;
+					fill: currentColor;
+				}
+			}
+		}
+
+		@media (width <= 480px) {
+			gap: 0.75rem;
+
+			li > a {
+				inline-size: 46px;
+				block-size: 46px;
+
+				svg {
+					inline-size: 20px;
+					block-size: 20px;
+				}
+			}
+		}
+	}
 }
 
 
