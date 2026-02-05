@@ -62,8 +62,11 @@
                             <ul class="publishers">
                                 <?php while (have_rows('journal_authors')) : the_row();
                                     $author_name = get_sub_field('authour_name');
+                                    $is_lead = get_sub_field('lead_author');
+                                    // ACF radio button returns string - check for 'yes' value
+                                    $is_lead_author = ($is_lead === 'yes' || $is_lead === 'Yes' || $is_lead === true || $is_lead === '1');
                                     if ($author_name): ?>
-                                        <li data-autor="<?php echo esc_attr($author_name); ?>">
+                                        <li data-autor="<?php echo esc_attr($author_name); ?>"<?php if ($is_lead_author) echo ' data-lead-author="true"'; ?>>
                                             <span>
                                                 <?php echo esc_html($author_name); ?>
                                             </span>
@@ -96,10 +99,26 @@
             endwhile;
             echo '</ul>'; // close publications-list
             wp_reset_postdata();
-        else :
-            echo '<p>No publications found.</p>';
-        endif;
-    ?>
+            ?>
+            
+            <!-- Empty state for when filter returns no results -->
+            <div class="publications__empty-state" data-empty-state data-visible="false">
+                <svg class="publications__empty-state-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 12h6m-3-3v6m-7 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <h3 class="publications__empty-state-title">No publications found</h3>
+                <p class="publications__empty-state-text">There are no publications matching your current filter. Try selecting a different type.</p>
+            </div>
+        <?php else : ?>
+            <!-- Empty state when no publications exist -->
+            <div class="publications__empty-state" data-empty-state data-visible="true">
+                <svg class="publications__empty-state-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M9 12h6m-3-3v6m-7 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <h3 class="publications__empty-state-title">No publications found</h3>
+                <p class="publications__empty-state-text">There are no publications to display at this time.</p>
+            </div>
+        <?php endif; ?>
 </main>
 
 <?php get_footer(); ?>

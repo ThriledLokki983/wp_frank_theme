@@ -1,6 +1,7 @@
 class SelectDropdown {
 	_listContainer = '';
 	_selectElement = '';
+	_emptyState = '';
 
 	constructor(containerName) {
 		this._listContainer = document.querySelector(`.${containerName}`);
@@ -11,6 +12,7 @@ class SelectDropdown {
 		}
 
 		this._selectElement = document.querySelector('select[data-select-element]');
+		this._emptyState = document.querySelector('[data-empty-state]');
 	}
 
 	init() {
@@ -29,47 +31,40 @@ class SelectDropdown {
 
 		const selectedValue = event.target.value?.toLowerCase() || 'all';
 		const publicationsList = Array.from(this._listContainer.querySelectorAll('li'));
-		const staggerDelay = 50; // milliseconds between each card animation
+		const staggerDelay = 50;
 
-		// First, hide all items that don't match the filter
-		publicationsList.forEach((pub, index) => {
+		// First, hide items that don't match
+		publicationsList.forEach((pub) => {
 			const publicationType = pub.dataset.publicationType?.toLowerCase() || '';
 			const shouldShow = selectedValue === 'all' || publicationType === selectedValue;
 
 			if (!shouldShow) {
-				// Add animation-out class for fade out effect
-				pub.classList.add('animate-filter-out');
 				pub.setAttribute('data-hidden', 'true');
-
-				// After animation completes, hide the element
-				pub.addEventListener('animationend', () => {
-					pub.style.display = 'none';
-					pub.classList.remove('animate-filter-out');
-				}, { once: true });
 			}
 		});
 
-		// Then, show all items that match with staggered timing
-		setTimeout(() => {
-			// Get only the items that match the current filter
-			const visibleItems = publicationsList.filter(pub => {
-				const publicationType = pub.dataset.publicationType?.toLowerCase() || '';
-				return selectedValue === 'all' || publicationType === selectedValue;
-			});
+		// Then show matching items with staggered animation
+		let visibleIndex = 0;
+		publicationsList.forEach((pub) => {
+			const publicationType = pub.dataset.publicationType?.toLowerCase() || '';
+			const shouldShow = selectedValue === 'all' || publicationType === selectedValue;
 
-			// Apply staggered animation to matching items
-			visibleItems.forEach((pub, index) => {
+			if (shouldShow) {
 				setTimeout(() => {
-					pub.style.display = 'block';
-					pub.classList.add('animate-filter-in');
 					pub.setAttribute('data-hidden', 'false');
+				}, visibleIndex * staggerDelay);
+				visibleIndex++;
+			}
+		});
 
-					pub.addEventListener('animationend', () => {
-						pub.classList.remove('animate-filter-in');
-					}, { once: true });
-				}, index * staggerDelay);
-			});
-		}, 300); // Wait for hide animations to complete
+		// Show/hide empty state based on whether any items are visible
+		if (this._emptyState) {
+			if (visibleIndex === 0) {
+				this._emptyState.setAttribute('data-visible', 'true');
+			} else {
+				this._emptyState.setAttribute('data-visible', 'false');
+			}
+		}
 	}
 }
 

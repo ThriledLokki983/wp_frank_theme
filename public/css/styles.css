@@ -118,19 +118,19 @@ body {
 
 .navigation {
   inline-size: 100dvw;
-  block-size: var(--header-size);
+  block-size: calc(var(--header-size) + 0rem);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
-  background-color: rgba(255, 249, 229, 0.75);
+  background-color: rgba(255, 249, 229, 0.95);
   box-shadow: var(--shadow-1);
 }
 
 @media (width <= 480px) {
   .navigation {
     background-color: rgb(255, 249, 229);
-    block-size: var(--header-size);
+    block-size: calc(var(--header-size) + 0rem);
     box-shadow: var(--shadow-3);
   }
 }
@@ -601,30 +601,43 @@ main.main-content {
 .publications li.publication__item {
   margin: 0;
   list-style-type: none;
-  display: block;
+  display: grid;
   background: rgba(181, 181, 179, 0.3);
-  opacity: 1;
   padding: 3rem 3rem 1.5rem 3rem;
   border-radius: 8px;
   margin-block-end: 1rem;
   will-change: transform, opacity;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1), margin 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.publications li.publication__item > * {
+  overflow: hidden;
 }
 
 .publications li.publication__item[data-hidden=false] {
+  grid-template-rows: 1fr;
   opacity: 1;
   transform: translateY(0) scale(1);
   visibility: visible;
   pointer-events: auto;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 3rem 3rem 1.5rem 3rem;
+  margin-block-end: 1rem;
 }
 
 .publications li.publication__item[data-hidden=true] {
+  grid-template-rows: 0fr;
   opacity: 0;
-  transform: translateY(20px) scale(0.95);
+  transform: translateY(-10px) scale(0.98);
   visibility: hidden;
   pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-block: 0;
+  padding-inline: 0;
+  margin-block-end: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 .publications li.publication__item.alt {
@@ -833,8 +846,8 @@ main.main-content {
     font-size: 1.3rem;
   }
 }
-.publications li.publication__item > footer > ul.publishers > li[data-author="^Tsiwah"] {
-  font-weight: 500;
+.publications li.publication__item > footer > ul.publishers > li[data-lead-author=true] > span {
+  font-weight: 600;
 }
 
 .publications li.publication__item > footer > ul.links {
@@ -900,6 +913,34 @@ main.main-content {
   margin-inline-end: 1rem;
 }
 
+.project-description {
+  font-size: 1.4rem;
+  color: var(--text-2);
+  margin-block-start: 1rem;
+  line-height: 1.6;
+}
+
+@media (width <= 480px) {
+  .project-description {
+    font-size: 1.2rem;
+  }
+}
+.project-status-badge {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--accent-1);
+  background-color: rgba(var(--accent-1-rgb, 99, 102, 241), 0.1);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+}
+
+@media (width <= 480px) {
+  .project-status-badge {
+    font-size: 1rem;
+    padding: 0.3rem 0.8rem;
+  }
+}
 @keyframes filterFadeIn {
   0% {
     opacity: 0;
@@ -931,33 +972,49 @@ main.main-content {
 .publications__filter {
   inline-size: 85%;
   margin-inline: auto;
-  margin-block-start: 1rem;
+  margin-block-start: 2.5rem;
   display: flex;
-  flex-flow: column nowrap;
   justify-content: flex-start;
-}
-
-.publications__filter label {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: var(--text-2);
-  margin-block-start: 1rem;
+  gap: 2rem;
+  align-items: flex-end;
 }
 
 @media (width <= 480px) {
   .publications__filter {
     inline-size: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
   }
 }
+.publications__filter-group {
+  display: flex;
+  flex-direction: column;
+  inline-size: 25%;
+}
+
+@media (width <= 480px) {
+  .publications__filter-group {
+    inline-size: 100%;
+  }
+}
+.publications__filter-label {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-2);
+  margin-block-end: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
 .publications__filter-select {
   font-size: 1.6rem;
-  margin-block-start: 1rem;
   padding: 1.25rem;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   background-color: var(--background-color);
   block-size: 4.5rem;
-  inline-size: 25%;
+  inline-size: 100%;
   background-color: rgba(181, 181, 179, 0.3);
   position: relative;
 }
@@ -965,7 +1022,6 @@ main.main-content {
 @media (width <= 480px) {
   .publications__filter-select {
     font-size: 1.4rem;
-    inline-size: 100%;
   }
 }
 .publications__filter-select svg {
@@ -1209,6 +1265,58 @@ main.main-content {
   font-style: italic;
 }
 
+.publications__empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  min-height: 300px;
+  margin-inline: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.publications__empty-state[data-visible=true] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.publications__empty-state[data-visible=false] {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  position: absolute;
+  pointer-events: none;
+}
+
+.publications__empty-state-icon {
+  width: 80px;
+  height: 80px;
+  color: var(--accent-1, #6366f1);
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+}
+
+.publications__empty-state-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-1, #1f2937);
+  margin: 0 0 0.75rem;
+}
+
+.publications__empty-state-text {
+  font-size: 1.1rem;
+  color: var(--text-2, #6b7280);
+  max-width: 400px;
+  margin: 0;
+  line-height: 1.6;
+}
+
 @media only screen and (min-width: 960px) {
   .sub__menu {
     --button-visibility: hidden;
@@ -1395,11 +1503,13 @@ li.sub__menu--lists--item > a.sub__menu--title ~ ul li > a:hover {
 .footer {
   overflow: auto;
   z-index: 2;
-  margin-block: auto 5rem;
+  margin-block: 3rem 5rem;
   display: flex;
   place-content: center;
   place-items: center;
   flex-wrap: wrap;
+  flex-shrink: 0;
+  margin-block-start: auto;
 }
 
 @media (width <= 480px) {
@@ -1474,6 +1584,7 @@ body[data-page-name=home] .footer__container {
   flex-direction: column;
   align-items: flex-start;
   margin-block-start: var(--header-size);
+  flex: 1 0 auto;
 }
 
 @media (width <= 480px) {

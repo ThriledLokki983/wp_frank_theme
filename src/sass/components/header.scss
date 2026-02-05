@@ -1,11 +1,11 @@
 .navigation {
-		inline-size: 100dvw; block-size: var(--header-size);
+		inline-size: 100dvw; block-size: calc(var(--header-size) + 0rem);
 		position: fixed; top: 0; left: 0; z-index: 10;
-		background-color: rgba(255, 249, 229, 0.75);
+		background-color: rgba(255, 249, 229, 0.95);
 		box-shadow: var(--shadow-1);
 
 		@media (width <= 480px) {
-			background-color: rgba(255, 249, 229, 1); block-size: var(--header-size);
+			background-color: rgba(255, 249, 229, 1); block-size: calc(var(--header-size) + 0rem);
 			box-shadow: var(--shadow-3);
 		}
 

@@ -3,7 +3,7 @@
         <footer class="footer" data-page-name="<?php echo strtolower(get_the_title()); ?>">
             <div class="footer__container">
                 <p>&copy; <?= date('Y') ?> · Designed and developed by ·  &nbsp;</p>
-                <a href="https://nimohgideon.com" target="_blank" class="link">sleeklayer.dev</a>
+                <a href="https://nimoh-ict.nl" target="_blank" class="link">Nimoh Digital Solutions</a>
             </div>
         </footer>
     <?php endif; ?>

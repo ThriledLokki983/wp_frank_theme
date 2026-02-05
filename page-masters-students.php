@@ -149,26 +149,43 @@
             echo '<p>No masters projects found.</p>';
         endif;
     ?>
+
+    <!-- Empty state for when filter returns no results -->
+    <div class="publications__empty-state" data-empty-state data-visible="false">
+        <svg class="publications__empty-state-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 12h6m-3-3v6m-7 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        <h3 class="publications__empty-state-title">No projects found</h3>
+        <p class="publications__empty-state-text">There are no projects matching your current filter. Try selecting a different status.</p>
+    </div>
 </main>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const filterSelect = document.getElementById('masters-projects-filter');
     const projectItems = document.querySelectorAll('[data-project-list] li');
+    const emptyState = document.querySelector('[data-empty-state]');
 
     if (filterSelect) {
         filterSelect.addEventListener('change', function() {
             const selectedValue = this.value;
+            let visibleCount = 0;
 
             projectItems.forEach(item => {
                 const status = item.getAttribute('data-project-status');
 
                 if (selectedValue === 'all' || status === selectedValue) {
                     item.setAttribute('data-hidden', 'false');
+                    visibleCount++;
                 } else {
                     item.setAttribute('data-hidden', 'true');
                 }
             });
+
+            // Show/hide empty state
+            if (emptyState) {
+                emptyState.setAttribute('data-visible', visibleCount === 0 ? 'true' : 'false');
+            }
         });
     }
 });
